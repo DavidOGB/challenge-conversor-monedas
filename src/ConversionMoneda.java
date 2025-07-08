@@ -8,6 +8,8 @@ import java.net.http.HttpResponse;
 
 public class ConversionMoneda {
 
+    Gson GSON = new Gson();
+
 
     public Moneda convertirMoneda(String opcionConversion) {
 
@@ -22,7 +24,7 @@ public class ConversionMoneda {
         try {
             HttpResponse<String> response = client
                     .send(request, HttpResponse.BodyHandlers.ofString());
-            return new Gson().fromJson(response.body(), Moneda.class);
+            return GSON.fromJson(response.body(), Moneda.class);
 
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
